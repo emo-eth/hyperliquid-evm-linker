@@ -9,6 +9,7 @@ remappings = [
     "create2-helpers/=dependencies/create2-helpers-0.5.0/src/",
     "a16z-halmos-cheatcodes/=dependencies/a16z-halmos-cheatcodes-0.1.0/src/",
     "deterministic-proxy-factory/=dependencies/deterministic-proxy-factory-0.1.4/src/",
+    "openzeppelin-contracts-upgradeable/=dependencies/@openzeppelin-contracts-upgradeable-5.3.0/",
 ]
 optimizer_runs = 9999999
 solc_version = "0.8.30"
@@ -48,5 +49,15 @@ create2-helpers = "0.5.0"
 deterministic-proxy-factory = "0.1.4"
 a16z-halmos-cheatcodes = { version = "0.1.0", git = "https://github.com/a16z/halmos-cheatcodes.git", rev = "6da4e692c357ba6d641a2e677a28298cac9f76ab" }
 forge-std = { version = "1.9.8", git = "https://github.com/foundry-rs/forge-std.git", rev = "60acb7aaadcce2d68e52986a0a66fe79f07d138f" }
+"@openzeppelin-contracts-upgradeable" = "5.3.0"
+
+[rpc_endpoints]
+hyperliquid_evm = "https://rpc.hyperliquid.xyz/evm"
+linea = "https://rpc.linea.build"
+
+[etherscan]
+hyperliquid_evm = { url = "hyperevmscan.io", key = "${ETHEREUM_ETHERSCAN_API_KEY}", chain = "999" }
+linea = { url = "https://api.lineascan.build/api", key = "${ETHEREUM_ETHERSCAN_API_KEY}", chain = "59144" }
+
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
