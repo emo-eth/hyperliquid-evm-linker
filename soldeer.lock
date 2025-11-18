@@ -20,10 +20,10 @@ integrity = "a18fe8aa906f2840378580388d61d032095410791ce6dff1f9a86754a6755d44"
 
 [[dependencies]]
 name = "deterministic-proxy-factory"
-version = "0.1.4"
-url = "https://soldeer-revisions.s3.amazonaws.com/deterministic-proxy-factory/0_1_4_25-05-2025_18:32:24_proxy-factory.zip"
-checksum = "9782a1e18276c5e6eacc7766597512570cc7cefa9cda7ccf20ef06dff0ff20ab"
-integrity = "0dc238ebe186591151f13256df52bd86dd95029aff66011739facbc680e07305"
+version = "0.3.1"
+url = "https://soldeer-revisions.s3.amazonaws.com/deterministic-proxy-factory/0_3_1_05-08-2025_03:14:39_deterministic-proxy-factory.zip"
+checksum = "e9dd9eb6213e63c9e835717ac7f2329a1f2537fffe6b6e4e466d117fdda62630"
+integrity = "cf22395d43e62ee471d509cc43c212ba00ab900b01a81977020492a378a9efd7"
 
 [[dependencies]]
 name = "forge-std"

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import { HyperCoreLinker } from "../src/HyperCoreLinker.sol";
+import { HyperCoreDeployerLinker } from "../src/HyperCoreDeployerLinker.sol";
 import { Script, console } from "forge-std/Script.sol";
 import { UUPSUpgradeable } from "openzeppelin-contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
@@ -26,11 +26,11 @@ contract DeployAndLink is Script {
         console.log("target", target);
         console.log("currentImplementation", currentImplementation);
         vm.startBroadcast(deployer);
-        HyperCoreLinker impl = new HyperCoreLinker{ salt: bytes32(0) }();
+        HyperCoreDeployerLinker impl = new HyperCoreDeployerLinker{ salt: bytes32(0) }();
         // UUPSUpgradeable(target).upgradeToAndCall(
         //     address(impl),
         //     abi.encodeCall(
-        //         HyperCoreLinker.setDeployerAndUpgradeToAndCall, (deployer, address(impl), "")
+        //         HyperCoreDeployerLinker.setDeployerAndUpgradeToAndCall, (deployer, address(impl), "")
         //     )
         // );
 

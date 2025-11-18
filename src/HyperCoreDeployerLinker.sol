@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import { UUPSUpgradeable } from "openzeppelin-contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {
+    UUPSUpgradeable
+} from "openzeppelin-contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract HyperCoreLinker is UUPSUpgradeable {
+contract HyperCoreDeployerLinker is UUPSUpgradeable {
 
     bytes32 constant HYPER_CORE_DEPLOYER_SLOT = keccak256("HyperCore deployer");
+
+    event HyperCoreDeployerSet(address indexed deployer);
 
     function setDeployerAndUpgradeToAndCall(
         address hyperCoreDeployer,
@@ -16,9 +20,11 @@ contract HyperCoreLinker is UUPSUpgradeable {
         assembly {
             sstore(hyperCoreDeployerSlot, hyperCoreDeployer)
         }
+        emit HyperCoreDeployerSet(hyperCoreDeployer);
         upgradeToAndCall(newImplementation, data);
     }
 
     function _authorizeUpgrade(address newImplementation) internal override { }
 
 }
+

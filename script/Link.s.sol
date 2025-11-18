@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import { HyperCoreLinker } from "../src/HyperCoreLinker.sol";
+import { HyperCoreDeployerLinker } from "../src/HyperCoreDeployerLinker.sol";
 import { Script, console } from "forge-std/Script.sol";
-import { UUPSUpgradeable } from "openzeppelin-contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {
+    UUPSUpgradeable
+} from "openzeppelin-contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 contract Link is Script {
 
     function setUp() public { }
 
     function run() public {
-        vm.createSelectFork(vm.rpcUrl("hyperliquid_evm"));
+        vm.createSelectFork(vm.rpcUrl("hyperliquid-evm-testnet"));
         address deployer = vm.envAddress("DEPLOYER");
         address target = vm.envAddress("TARGET");
         address hyperCoreDeployer = vm.envAddress("HYPERCORE_DEPLOYER");
@@ -28,13 +30,14 @@ contract Link is Script {
         console.log("target", target);
         console.log("currentImplementation", currentImplementation);
         vm.startBroadcast(deployer);
-        UUPSUpgradeable(target).upgradeToAndCall(
-            address(linkerImpl),
-            abi.encodeCall(
-                HyperCoreLinker.setDeployerAndUpgradeToAndCall,
-                (hyperCoreDeployer, address(currentImplementation), "")
-            )
-        );
+        UUPSUpgradeable(target)
+            .upgradeToAndCall(
+                address(linkerImpl),
+                abi.encodeCall(
+                    HyperCoreDeployerLinker.setDeployerAndUpgradeToAndCall,
+                    (hyperCoreDeployer, address(currentImplementation), "")
+                )
+            );
 
         vm.stopBroadcast();
     }
